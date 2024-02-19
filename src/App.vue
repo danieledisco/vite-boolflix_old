@@ -15,8 +15,19 @@ export default {
         out = 'fi fi-gb';
       else if (input.original_language === 'ja')
         out = 'fi fi-jp';
-      else
-        out = 'fi fi-' + input.original_language;
+      else if (input.original_language === 'hi')
+        out = 'fi fi-in';
+      else if (input.original_language === 'zh')
+        out = 'fi fi-cn';
+      else if (input.original_language === 'ko')
+        out = 'fi fi-kr';
+      else {
+        if (state.available_flags.includes(input.original_language))
+          out = 'fi fi-' + input.original_language;
+        else
+          out = 'fi fi-xx';
+      }
+
       return out;
     }
   }
