@@ -3,6 +3,7 @@ import axios from 'axios';
 export const state = reactive({
     api_key: '016f962ecb95c317b3e0029c7c77989e',
     base_api_url: 'https://api.themoviedb.org/3/search/',
+    base_image_url: 'https://image.tmdb.org/t/p/w342',
     available_flags: ['ad', 'ae', 'af', 'ag', 'ai', 'al', 'am', 'ao', 'aq', 'ar', 'arab', 'as', 'at', 'au', 'aw', 'ax', 'az', 'ba', 'bb', 'bd', 'be', 'bf',
         'bg', 'bh', 'bi', 'bj', 'bl', 'bm', 'bn', 'bo', 'bq', 'br', 'bs', 'bt', 'bv', 'bw', 'by', 'bz', 'ca', 'cc', 'cd', 'cefta', 'cf', 'cg',
         'ch', 'ci', 'ck', 'cl', 'cm', 'cn', 'co', 'cp', 'cr', 'cu', 'cv', 'cw', 'cx', 'cy', 'cz', 'de', 'dg', 'dj', 'dk', 'dm', 'do', 'dz',
@@ -19,7 +20,8 @@ export const state = reactive({
     stringSearch: '',
     out_movie: [],
     out_tv: [],
-    movie_tv: 0,    /* 0 movie 1 tv */
+
+    movie_tv: 3,    /* 0 movie 1 tv */
 
     getMovieTV(url) {
         console.log('state.js url = ' + url);
