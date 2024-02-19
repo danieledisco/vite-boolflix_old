@@ -1,7 +1,8 @@
 import { reactive } from 'vue';
 import axios from 'axios';
 export const state = reactive({
-    base_api_movie_url: 'https://api.themoviedb.org/3/search/movie?api_key=016f962ecb95c317b3e0029c7c77989e&query=',
+    api_key: '016f962ecb95c317b3e0029c7c77989e',
+    base_api_url: 'https://api.themoviedb.org/3/search/',
     available_flags: ['ad', 'ae', 'af', 'ag', 'ai', 'al', 'am', 'ao', 'aq', 'ar', 'arab', 'as', 'at', 'au', 'aw', 'ax', 'az', 'ba', 'bb', 'bd', 'be', 'bf',
         'bg', 'bh', 'bi', 'bj', 'bl', 'bm', 'bn', 'bo', 'bq', 'br', 'bs', 'bt', 'bv', 'bw', 'by', 'bz', 'ca', 'cc', 'cd', 'cefta', 'cf', 'cg',
         'ch', 'ci', 'ck', 'cl', 'cm', 'cn', 'co', 'cp', 'cr', 'cu', 'cv', 'cw', 'cx', 'cy', 'cz', 'de', 'dg', 'dj', 'dk', 'dm', 'do', 'dz',
@@ -16,15 +17,22 @@ export const state = reactive({
         'tj', 'tk', 'tl', 'tm', 'tn', 'to', 'tr', 'tt', 'tv', 'tw', 'tz', 'ua', 'ug', 'um', 'un', 'us', 'uy', 'uz', 'va', 'vc', 've', 'vg', 'vi',
         'vn', 'vu', 'wf', 'ws', 'xk', 'xx', 'ye', 'yt', 'za', 'zm', 'zw'],
     stringSearch: '',
-    out: [],
+    out_movie: [],
+    out_tv: [],
+    movie_tv: 0,    /* 0 movie 1 tv */
 
-    getMovie() {
-        const url = this.base_api_movie_url + this.stringSearch;
-        console.log('url = ' + url);
+    getMovieTV(url) {
+        console.log('state.js url = ' + url);
         axios.get(url)
             .then(response => {
+                console.log('state.js response.data.results = ');
                 console.log(response.data.results);
-                this.out = response.data.results;
+                if (this.movie_tv === 0) {
+                    this.out_movie = response.data.results;
+                }
+                else {
+                    this.out_tv = response.data.results;
+                }
             })
             .catch(error => {
                 console.error(error);
