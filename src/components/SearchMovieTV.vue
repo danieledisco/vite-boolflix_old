@@ -53,6 +53,9 @@ export default {
         compose_image_url(image) {
             let url = state.base_image_url + image
             return url;
+        },
+        evalStars(num) {
+            return Math.ceil(5. * num / 10.);
         }
 
     }
@@ -73,6 +76,8 @@ export default {
         <li>Vote: {{ movie.vote_count }}</li>
         <li>Vote averege: {{ movie.vote_average }}</li>
         <li><img v-bind:src=compose_image_url(movie.poster_path) alt=""></li>
+        <li>Number of stars</li>
+        <li>{{ evalStars(movie.vote_average) }}</li>
     </ul>
     <p v-if="state.movie_tv == 0 && state.out_movie.length == 0">
         Nessun Film Trovato
@@ -88,6 +93,8 @@ export default {
         <li>Vote: {{ tv.vote_count }}</li>
         <li>Vote averege: {{ tv.vote_average }}</li>
         <li><img v-bind:src=compose_image_url(tv.poster_path) alt=""></li>
+        <li>Number of stars</li>
+        <li>{{ evalStars(tv.vote_average) }}</li>
     </ul>
 
     <p v-if="state.movie_tv == 1 && state.out_tv.length == 0">
