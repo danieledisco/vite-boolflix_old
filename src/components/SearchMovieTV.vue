@@ -9,22 +9,7 @@ export default {
     },
 
     methods: {
-        getMovie() {
-            state.out_tv = [];
-            let url;
-            state.movie_tv = 0;
-            url = `${state.base_api_url}movie?api_key=${state.api_key}&query=${state.stringSearch}`
-            console.log('SearchMivieTV url = ' + url);
-            state.getMovieTV(url)
-        },
-        getTV() {
-            state.out_movie = [];
-            let url;
-            state.movie_tv = 1;
-            url = `${state.base_api_url}tv?api_key=${state.api_key}&query=${state.stringSearch}`
-            state.getMovieTV(url)
-            console.log('SearchMivieTV url = ' + url);
-        },
+
         makeFlags(input) {
             let lc = input.toLowerCase();
             let out;
@@ -63,11 +48,6 @@ export default {
 </script>
  
 <template>
-    <input name="searchText" type="text" placeholder="Name movie or series here" v-model="state.stringSearch">
-    <button @click="getMovie()">Search Movie</button>
-
-    <button @click="getTV()">Search TV Series</button>
-
     <ul v-for="movie in state.out_movie">
         <li>Title : {{ movie.title }}</li>
         <li>Original title : {{ movie.original_title }}</li>

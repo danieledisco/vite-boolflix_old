@@ -1,13 +1,21 @@
 <script>
+import FilterData from './FilterData.vue';
+
+
 export default {
     name: 'AppMain',
+    components: { FilterData }
 }
 </script>
  
 <template>
-    <div>
-        Main
-    </div>
+    <main>
+        <FilterData></FilterData>
+    </main>
 </template>
  
-<style scoped></style>
+<style scoped>
+main {
+    background-color: var(--bflix-gray);
+}
+</style>
