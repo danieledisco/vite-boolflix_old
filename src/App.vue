@@ -1,5 +1,7 @@
 <script>
+import AppHeader from './components/AppHeader.vue';
 import SearchMovieTV from './components/SearchMovieTV.vue';
+import AppMain from './components/AppMain.vue';
 import { state } from './state.js';
 export default {
   name: 'App',
@@ -8,11 +10,13 @@ export default {
       state
     };
   },
-  components: { SearchMovieTV }
+  components: { SearchMovieTV, AppHeader, AppMain }
 }
 </script>
   
 <template>
+  <AppHeader></AppHeader>
+  <AppMain></AppMain>
   <SearchMovieTV></SearchMovieTV>
 </template>
  

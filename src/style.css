@@ -1,4 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bflix-dark: black;
+  --bflix-gray: gray;
+  --bflix-ligth: white;
+  --bflix-logo: rgb(237, 28, 36);
+}
+
+
 body {
-  background-color: aqua;
-  color: brown;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+.container {
+  width: 80%;
+  margin: auto;
 }
