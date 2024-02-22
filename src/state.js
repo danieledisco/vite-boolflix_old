@@ -39,6 +39,16 @@ export const state = reactive({
             .catch(error => {
                 console.error(error);
             })
-    }
+    },
+    compose_image_url(image) {
+        let url;
+        if (image != null) {
+            url = state.base_image_url + image;
+        }
+        else {
+            url = '/npPoster.jpg';
+        }
+        return url;
+    },
 
 })

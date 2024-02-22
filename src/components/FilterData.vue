@@ -47,9 +47,10 @@ export default {
     padding: 0.5rem 0;
 
     &>input {
-        font-size: 1rem;
+        font-size: 0.95rem;
         padding: 0.2rem 0;
         text-align: center;
+        background-color: var(--bflix-ligth);
     }
 
     &>.buttonContainer {
@@ -60,7 +61,7 @@ export default {
             font-size: 1rem;
             padding: 0.2rem 0.2rem;
             margin: 0 0.2rem;
-            border-radius: 0.5rem;
+            border-radius: 0.3rem;
             color: var(--bflix-dark);
             border: 1px solid transparent;
         }
@@ -68,6 +69,7 @@ export default {
         & button:hover {
             color: var(--bflix-logo);
             border: 1px solid var(--bflix-logo);
+            cursor: pointer;
         }
 
 

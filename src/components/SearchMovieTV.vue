@@ -35,10 +35,7 @@ export default {
             }
             return out;
         },
-        compose_image_url(image) {
-            let url = state.base_image_url + image
-            return url;
-        },
+
         evalStars(num) {
             return Math.ceil(5. * num / 10.);
         }
@@ -48,7 +45,7 @@ export default {
 </script>
  
 <template>
-    <ul v-for="movie in state.out_movie">
+    <!--    <ul v-for="movie in state.out_movie">
         <li>Title : {{ movie.title }}</li>
         <li>Original title : {{ movie.original_title }}</li>
         <li>Language : {{ movie.original_language }}</li>
@@ -62,7 +59,7 @@ export default {
     <p v-if="state.movie_tv == 0 && state.out_movie.length == 0">
         Nessun Film Trovato
     </p>
-
+ -->
     <ul v-for="tv in    state.out_tv ">
         <li>Title : {{ tv.name }}</li>
         <li>Original title : {{ tv.original_name }}</li>
