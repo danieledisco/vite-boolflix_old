@@ -14,10 +14,7 @@
 
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-img {
-  border-radius: 10px;
+  background-color: var(--bflix-gray);
 }
 
 .container {
@@ -38,6 +35,12 @@ img {
 [class^="col-"] {
   padding: 1rem;
 }
+
+ul {
+  list-style: none;
+}
+
+
 
 @media screen and (min-width: 568px) {
   .col-sm-6 {

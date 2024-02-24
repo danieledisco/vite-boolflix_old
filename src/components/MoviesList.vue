@@ -11,61 +11,92 @@ export default {
 
 </script>
  
-<template>
+<template onscroll="blockHover">
     <div class="container">
+        <div v-if="state.movie_tv == 0 && state.out_movie.length == 0" class="noOut">
+            No Movies found in the database
+        </div>
         <div class="row">
             <div class="col-12 col-sm-6 col-lg-4" v-for="movie in state.out_movie">
-
-                <div class="card" v-if="movie.poster_path != null">
-                    <img v-bind:src=state.compose_image_url(movie.poster_path) alt="">
-                </div>
-                <div class="card" v-else>
-                    <img src="/noPoster.jpg" alt="">
+                <div class="card">
+                    <img v-if="movie.poster_path != null" v-bind:src=state.compose_image_url(movie.poster_path) alt=""
+                        id="i1">
+                    <img v-else src="/noPoster.jpg" alt="" id="i2">
+                    <div class="info">
+                        <ul>
+                            <li class="caption">Titole:</li>
+                            <li> {{ movie.title }}</li>
+                            <li class="caption">Original title:</li>
+                            <li> {{ movie.original_title }}</li>
+                            <li class="caption">Overview:</li>
+                            <li>{{ movie.overview }}</li>
+                            <li class="caption">Country: <span
+                                    v-bind:class="state.makeFlags(movie.original_language)"></span></li>
+                            <li class="caption">Rate:
+                                <span v-for="i in state.evalStars(movie.vote_average)"> <i
+                                        class="fa-solid fa-star"></i></span>
+                                <span v-for="i in 5 - state.evalStars(movie.vote_average)"><i
+                                        class="fa-regular fa-star"></i></span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
             </div>
-            <!-- /.col-12 col-sm-6 col-md-3 -->
         </div>
     </div>
-
-
-
-
-
-
-    <!--    <ul v-for="movie in state.out_movie">
-        <li>Title : {{ movie.title }}</li>
-        <li>Original title : {{ movie.original_title }}</li>
-        <li>Language : {{ movie.original_language }}</li>
-        <li><span v-bind:class="makeFlags(movie.original_language)"></span></li>
-        <li>Vote: {{ movie.vote_count }}</li>
-        <li>Vote averege: {{ movie.vote_average }}</li>
-        <li></li>
-        <li>Number of stars</li>
-        <li>{{ evalStars(movie.vote_average) }}</li>
-    </ul>
-    <p v-if="state.movie_tv == 0 && state.out_movie.length == 0">
-        Nessun Film Trovato
-    </p> -->
 </template>
  
 <style scoped>
 .card {
-    /*     background-color: white;
-    transition: all 1s;
+    position: relative;
+    background-color: black;
 
-    &:hover {
-        filter: drop-shadow(0 0 15px #507183);
-        scale: 1.01;
-    } */
-
-
-    >img {
-        width: 100%
+    & img {
+        width: 100%;
     }
 
-    >div {
-        padding: 1rem;
+    & .info {
+        display: none;
+        position: absolute;
+        top: 200Px;
+        left: 20px;
+        background-color: black;
+        color: var(--bflix-gray);
     }
+
+    & img:hover {
+        display: none;
+    }
+
+    & img:hover+.info {
+        display: block;
+    }
+
+
+}
+
+.caption {
+    margin-right: 0.5rem;
+    color: var(--bflix-logo);
+}
+
+i {
+    color: yellow;
+}
+
+.noOut {
+    width: 70%;
+    margin-top: 15rem;
+    margin-bottom: 18rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+    text-align: center;
+    font-size: 2rem;
+    color: var(--bflix-logo);
+    border: 2px solid var(--bflix-logo);
+    background-color: var(--bflix-dark);
+    border-radius: 10px;
 }
 </style>

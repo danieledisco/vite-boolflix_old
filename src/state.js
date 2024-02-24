@@ -35,6 +35,9 @@ export const state = reactive({
                 else {
                     this.out_tv = response.data.results;
                 }
+                for (let i = 0; i < this.out_tv.length; i++) {
+                    this.out_tv.id = i;
+                }
             })
             .catch(error => {
                 console.error(error);
@@ -42,13 +45,36 @@ export const state = reactive({
     },
     compose_image_url(image) {
         let url;
-        if (image != null) {
-            url = state.base_image_url + image;
-        }
-        else {
-            url = '/npPoster.jpg';
-        }
+        url = this.base_image_url + image;
         return url;
     },
+    makeFlags(input) {
+        let lc = input.toLowerCase();
+        let out;
+        if (lc === 'en')
+            out = 'fi fi-gb';
+        else if (lc === 'ja')
+            out = 'fi fi-jp';
+        else if (lc === 'hi')
+            out = 'fi fi-in';
+        else if (lc === 'zh')
+            out = 'fi fi-cn';
+        else if (lc === 'ko')
+            out = 'fi fi-kr';
+        else if (lc === 'cs')
+            out = 'fi fi-cz';
+        else if (lc === 'te')
+            out = 'fi fi-in';
+        else {
+            if (this.available_flags.includes(lc))
+                out = 'fi fi-' + lc;
+            else
+                out = 'fi fi-xx';
+        }
+        return out;
 
+    },
+    evalStars(num) {
+        return Math.ceil(5. * num / 10.);
+    }
 })

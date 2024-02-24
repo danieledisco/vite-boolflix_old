@@ -6,6 +6,9 @@ export default {
         return {
             state
         }
+    },
+    methods: {
+
     }
 
 }
@@ -13,68 +16,92 @@ export default {
  
 <template>
     <div class="container">
+        <div v-if="state.movie_tv == 1 && state.out_tv.length == 0" class="noOut">
+            No TV Series found in the database
+        </div>
         <div class="row">
             <div class="col-12 col-sm-6 col-lg-4" v-for="tv in state.out_tv">
 
 
-                <div class="card" v-if="tv.poster_path != null">
-                    <img v-bind:src=state.compose_image_url(tv.poster_path) alt="">
+                <div class="card">
+                    <img v-if="tv.poster_path != null" v-bind:src=state.compose_image_url(tv.poster_path) alt="">
+                    <img v-else src="/noPoster.jpg" alt="">
+                    <div class="info">
+                        <ul>
+                            <li class="caption">Title:</li>
+                            <li>{{ tv.name }}</li>
+                            <li class="caption">Original title:</li>
+                            <li>{{ tv.original_name }}</li>
+                            <li class="caption">Overview:</li>
+                            <li>{{ tv.overview }}</li>
+                            <li class="caption">Country: <span v-bind:class="state.makeFlags(tv.origin_country[0])"></span>
+                            </li>
+                            <li class="caption">Rate:
+                                <span v-for="i in state.evalStars(tv.vote_average)"> <i class="fa-solid fa-star"></i></span>
+                                <span v-for="i in 5 - state.evalStars(tv.vote_average)"><i
+                                        class="fa-regular fa-star"></i></span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="card" v-else>
-                    <img src="/noPoster.jpg" alt="">
-                </div>
-
             </div>
-            <!-- /.col-12 col-sm-6 col-md-3 -->
         </div>
     </div>
 </template>
-
-
-
-
-
-
-
-
-
-
-<!-- <template>
-  <ul v-for="tv in    state.out_tv ">
-        <li>Title : {{ tv.name }}</li>
-        <li>Original title : {{ tv.original_name }}</li>
-        <li>Language : {{ tv.original_language }}</li>
-        <li><span v-bind:class="makeFlags(tv.original_language)"></span></li>
-        <li>Origin Country</li>
-        <li><span v-bind:class="makeFlags(tv.origin_country[0])"></span></li>
-        <li>Vote: {{ tv.vote_count }}</li>
-        <li>Vote averege: {{ tv.vote_average }}</li>
-        <li><img v-bind:src=compose_image_url(tv.poster_path) alt=""></li>
-        <li>Number of stars</li>
-        <li>{{ evalStars(tv.vote_average) }}</li>
-    </ul>
-
-    <p v-if="state.movie_tv == 1 && state.out_tv.length == 0">
-        Nessuna Serie TV Trovata
-    </p>
-</template>
- --> 
+ 
 <style scoped>
 .card {
-    /*     background-color: white;
-    transition: all 1s;
+    position: relative;
+    background-color: black;
 
-    &:hover {
-        filter: drop-shadow(0 0 15px #507183);
-        scale: 1.01;
-    } */
 
-    >img {
+    & img {
         width: 100%
     }
 
-    >div {
-        padding: 1rem;
+    & .info {
+        display: none;
+        position: absolute;
+        top: 200Px;
+        left: 20px;
+        background-color: black;
+        color: var(--bflix-gray);
+        border: 1px solid var(--bflix-ligth);
     }
+
+    & img:hover {
+        display: none;
+    }
+
+    & img:hover+.info {
+        display: block;
+    }
+
+
+}
+
+.caption {
+    font-weight: bold;
+    margin-right: 0.5rem;
+    color: var(--bflix-logo);
+}
+
+i {
+    color: yellow;
+}
+
+.noOut {
+    width: 70%;
+    margin-top: 15rem;
+    margin-bottom: 18rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+    text-align: center;
+    font-size: 2rem;
+    color: var(--bflix-logo);
+    border: 2px solid var(--bflix-logo);
+    background-color: var(--bflix-dark);
+    border-radius: 10px;
 }
 </style>

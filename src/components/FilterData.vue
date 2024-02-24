@@ -1,5 +1,6 @@
 <script>
 import { state } from '../state.js';
+
 export default {
     name: 'FilterData',
     data() {
@@ -31,6 +32,7 @@ export default {
 <template>
     <div class="container">
         <input name="searchText" type="text" placeholder="Type movie or series here" v-model="state.stringSearch">
+
         <div class="buttonContainer">
             <button @click="getMovie()">Search Movie</button>
             <button @click="getTV()">Search TV Series</button>
